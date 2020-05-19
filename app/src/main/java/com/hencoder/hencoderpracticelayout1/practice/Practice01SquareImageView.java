@@ -8,7 +8,7 @@ import android.widget.ImageView;
 /**
  * 需要把它写成正方形的 ImageView
  */
-public class Practice01SquareImageView extends ImageView {
+public class Practice01SquareImageView extends android.support.v7.widget.AppCompatImageView {
     public Practice01SquareImageView(Context context) {
         super(context);
     }
@@ -29,9 +29,15 @@ public class Practice01SquareImageView extends ImageView {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         // 先用 getMeasuredWidth() 和 getMeasuredHeight() 取到 super.onMeasure() 的计算结果
-
+        int measureWidth = getMeasuredWidth();
+        int measureHeight = getMeasuredHeight();
         // 然后通过计算，让宽度和高度一致
-
+        if(measureWidth > measureHeight){
+            measureWidth = measureHeight;
+        }else {
+            measureHeight = measureWidth;
+        }
+        setMeasuredDimension(measureWidth,measureHeight);
         // 再用 setMeasuredDimension(width, height) 来保存最终的宽度和高度
     }
 }
